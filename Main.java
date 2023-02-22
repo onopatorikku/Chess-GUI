@@ -1,21 +1,15 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 public class Main {
+	
+	//Chess board
+	public static String[][] board = new String[8][8];
+	
+	//Gets piece's name from GUI / kind of input
+	public static String pieceToMove;
+	
+	//Tells if its white's or black's turn
+	public static int turnTeller = 0; // 0 - white, 1 - black
 
 	public static void main(String[] args){
-		
-		//Chess board
-		String[][] board = new String[8][8];
 		
 		//white pieces
 		board[6][0] = "wPawn";
@@ -66,12 +60,17 @@ public class Main {
 		board[0][3] = "wQueen";
 		board[0][4] = "wKing";
 		
+				
 		//array print
-		System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
+		//System.out.println(Arrays.deepToString(board).replace("], ", "]\n").replace("[[", "[").replace("]]", "]"));
 				
 		//GUI section
 		GUI gui = new GUI();
 		gui.GUIframe(600, 600);
 		gui.GUIsettings2();		
+	}
+	
+	public static void pieceToMoveMethod() {
+		System.out.println(pieceToMove + "turn: " + turnTeller);
 	}
 }

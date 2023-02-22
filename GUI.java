@@ -464,100 +464,221 @@ public class GUI extends JFrame implements ActionListener{
 	public static int counter = 0;
 	public static String pieceCopy;
 	
-	//Picking first piece checker - using counter
+	//Making pieces movable and output to the engine
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
-		if(counter == 0) {
-			counter = 1;
-			((JComponent) source).setBackground(Color.GREEN);
-			
-			//Copying piece
-			pieceCopy = ((AbstractButton) source).getText().toString();
-			
-			//test
-			((AbstractButton) source).setText(empty); // picking from the previous square
-			
-		} else if(counter == 1) {
-			counter = 0;
-			Object source2 = e.getSource();
-			
-			//Pasting piece
-			((AbstractButton) source2).setText(pieceCopy); // putting on the new square
-			
-			//Refreshing the board
-			square1.setBackground(Color.getHSBColor(32, 6, 100));
-			square2.setBackground(Color.LIGHT_GRAY);
-			square3.setBackground(Color.getHSBColor(32, 6, 100));
-			square4.setBackground(Color.LIGHT_GRAY);
-			square5.setBackground(Color.getHSBColor(32, 6, 100));
-			square6.setBackground(Color.LIGHT_GRAY);
-			square7.setBackground(Color.getHSBColor(32, 6, 100));
-			square8.setBackground(Color.LIGHT_GRAY);
-			
-			square9.setBackground(Color.LIGHT_GRAY);
-			square10.setBackground(Color.getHSBColor(32, 6, 100));
-			square11.setBackground(Color.LIGHT_GRAY);
-			square12.setBackground(Color.getHSBColor(32, 6, 100));
-			square13.setBackground(Color.LIGHT_GRAY);
-			square14.setBackground(Color.getHSBColor(32, 6, 100));
-			square15.setBackground(Color.LIGHT_GRAY);
-			square16.setBackground(Color.getHSBColor(32, 6, 100));
-			
-			square17.setBackground(Color.getHSBColor(32, 6, 100));
-			square18.setBackground(Color.LIGHT_GRAY);
-			square19.setBackground(Color.getHSBColor(32, 6, 100));
-			square20.setBackground(Color.LIGHT_GRAY);
-			square21.setBackground(Color.getHSBColor(32, 6, 100));
-			square22.setBackground(Color.LIGHT_GRAY);
-			square23.setBackground(Color.getHSBColor(32, 6, 100));
-			square24.setBackground(Color.LIGHT_GRAY);
-			
-			square25.setBackground(Color.LIGHT_GRAY);
-			square26.setBackground(Color.getHSBColor(32, 6, 100));
-			square27.setBackground(Color.LIGHT_GRAY);
-			square28.setBackground(Color.getHSBColor(32, 6, 100));
-			square29.setBackground(Color.LIGHT_GRAY);
-			square30.setBackground(Color.getHSBColor(32, 6, 100));
-			square31.setBackground(Color.LIGHT_GRAY);
-			square32.setBackground(Color.getHSBColor(32, 6, 100));
-			
-			square33.setBackground(Color.getHSBColor(32, 6, 100));
-			square34.setBackground(Color.LIGHT_GRAY);
-			square35.setBackground(Color.getHSBColor(32, 6, 100));
-			square36.setBackground(Color.LIGHT_GRAY);
-			square37.setBackground(Color.getHSBColor(32, 6, 100));
-			square38.setBackground(Color.LIGHT_GRAY);
-			square39.setBackground(Color.getHSBColor(32, 6, 100));
-			square40.setBackground(Color.LIGHT_GRAY);
-			
-			square41.setBackground(Color.LIGHT_GRAY);
-			square42.setBackground(Color.getHSBColor(32, 6, 100));
-			square43.setBackground(Color.LIGHT_GRAY);
-			square44.setBackground(Color.getHSBColor(32, 6, 100));
-			square45.setBackground(Color.LIGHT_GRAY);
-			square46.setBackground(Color.getHSBColor(32, 6, 100));
-			square47.setBackground(Color.LIGHT_GRAY);
-			square48.setBackground(Color.getHSBColor(32, 6, 100));
-			
-			square49.setBackground(Color.getHSBColor(32, 6, 100));
-			square50.setBackground(Color.LIGHT_GRAY);
-			square51.setBackground(Color.getHSBColor(32, 6, 100));
-			square52.setBackground(Color.LIGHT_GRAY);
-			square53.setBackground(Color.getHSBColor(32, 6, 100));
-			square54.setBackground(Color.LIGHT_GRAY);
-			square55.setBackground(Color.getHSBColor(32, 6, 100));
-			square56.setBackground(Color.LIGHT_GRAY);
-			
-			square57.setBackground(Color.LIGHT_GRAY);
-			square58.setBackground(Color.getHSBColor(32, 6, 100));
-			square59.setBackground(Color.LIGHT_GRAY);
-			square60.setBackground(Color.getHSBColor(32, 6, 100));
-			square61.setBackground(Color.LIGHT_GRAY);
-			square62.setBackground(Color.getHSBColor(32, 6, 100));
-			square63.setBackground(Color.LIGHT_GRAY);
-			square64.setBackground(Color.getHSBColor(32, 6, 100));
-		}
 		
+		Object source = e.getSource();
+		String pickedPiece = ((AbstractButton) source).getText();
+		
+		//White's turn
+		if(Main.turnTeller == 0) {
+				
+			if((counter == 0) && (((AbstractButton) source).getText() != "") && (pickedPiece == wPawnA || pickedPiece == wRookA || pickedPiece == wKnightA || pickedPiece == wBishopA || pickedPiece == wQueenA || pickedPiece == wKingA || pickedPiece == empty)) {
+			
+				counter = 1;
+				((JComponent) source).setBackground(Color.GREEN); //To mark picked piece
+			
+				//Copying piece
+				pieceCopy = ((AbstractButton) source).getText();
+			
+				((AbstractButton) source).setText(empty); // picking from the previous square
+			
+				//Moves sender to the engine / output to engine
+				Main.pieceToMove = pieceCopy;
+				Main.pieceToMoveMethod(); // for tests only
+			
+			} else if(counter == 1) {
+				counter = 0;
+				Object source2 = e.getSource();
+			
+				//Pasting piece
+				((AbstractButton) source2).setText(pieceCopy); // putting on the new square
+			
+				//Refreshing the board to delete the mark
+				square1.setBackground(Color.getHSBColor(32, 6, 100));
+				square2.setBackground(Color.LIGHT_GRAY);
+				square3.setBackground(Color.getHSBColor(32, 6, 100));
+				square4.setBackground(Color.LIGHT_GRAY);
+				square5.setBackground(Color.getHSBColor(32, 6, 100));
+				square6.setBackground(Color.LIGHT_GRAY);
+				square7.setBackground(Color.getHSBColor(32, 6, 100));
+				square8.setBackground(Color.LIGHT_GRAY);
+			
+				square9.setBackground(Color.LIGHT_GRAY);
+				square10.setBackground(Color.getHSBColor(32, 6, 100));
+				square11.setBackground(Color.LIGHT_GRAY);
+				square12.setBackground(Color.getHSBColor(32, 6, 100));
+				square13.setBackground(Color.LIGHT_GRAY);
+				square14.setBackground(Color.getHSBColor(32, 6, 100));
+				square15.setBackground(Color.LIGHT_GRAY);
+				square16.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				square17.setBackground(Color.getHSBColor(32, 6, 100));
+				square18.setBackground(Color.LIGHT_GRAY);
+				square19.setBackground(Color.getHSBColor(32, 6, 100));
+				square20.setBackground(Color.LIGHT_GRAY);
+				square21.setBackground(Color.getHSBColor(32, 6, 100));
+				square22.setBackground(Color.LIGHT_GRAY);
+				square23.setBackground(Color.getHSBColor(32, 6, 100));
+				square24.setBackground(Color.LIGHT_GRAY);
+			
+				square25.setBackground(Color.LIGHT_GRAY);
+				square26.setBackground(Color.getHSBColor(32, 6, 100));
+				square27.setBackground(Color.LIGHT_GRAY);
+				square28.setBackground(Color.getHSBColor(32, 6, 100));
+				square29.setBackground(Color.LIGHT_GRAY);
+				square30.setBackground(Color.getHSBColor(32, 6, 100));
+				square31.setBackground(Color.LIGHT_GRAY);
+				square32.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				square33.setBackground(Color.getHSBColor(32, 6, 100));
+				square34.setBackground(Color.LIGHT_GRAY);
+				square35.setBackground(Color.getHSBColor(32, 6, 100));
+				square36.setBackground(Color.LIGHT_GRAY);
+				square37.setBackground(Color.getHSBColor(32, 6, 100));
+				square38.setBackground(Color.LIGHT_GRAY);
+				square39.setBackground(Color.getHSBColor(32, 6, 100));
+				square40.setBackground(Color.LIGHT_GRAY);
+			
+				square41.setBackground(Color.LIGHT_GRAY);
+				square42.setBackground(Color.getHSBColor(32, 6, 100));
+				square43.setBackground(Color.LIGHT_GRAY);
+				square44.setBackground(Color.getHSBColor(32, 6, 100));
+				square45.setBackground(Color.LIGHT_GRAY);
+				square46.setBackground(Color.getHSBColor(32, 6, 100));
+				square47.setBackground(Color.LIGHT_GRAY);
+				square48.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				square49.setBackground(Color.getHSBColor(32, 6, 100));
+				square50.setBackground(Color.LIGHT_GRAY);
+				square51.setBackground(Color.getHSBColor(32, 6, 100));
+				square52.setBackground(Color.LIGHT_GRAY);
+				square53.setBackground(Color.getHSBColor(32, 6, 100));
+				square54.setBackground(Color.LIGHT_GRAY);
+				square55.setBackground(Color.getHSBColor(32, 6, 100));
+				square56.setBackground(Color.LIGHT_GRAY);
+			
+				square57.setBackground(Color.LIGHT_GRAY);
+				square58.setBackground(Color.getHSBColor(32, 6, 100));
+				square59.setBackground(Color.LIGHT_GRAY);
+				square60.setBackground(Color.getHSBColor(32, 6, 100));
+				square61.setBackground(Color.LIGHT_GRAY);
+				square62.setBackground(Color.getHSBColor(32, 6, 100));
+				square63.setBackground(Color.LIGHT_GRAY);
+				square64.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				//Changes turns at the end of each move
+				if(Main.turnTeller == 0) {
+					Main.turnTeller = 1;
+				} else {
+					Main.turnTeller = 0;
+				}			
+			} //Black's turn
+		} else if (Main.turnTeller == 1) {
+			
+			if((counter == 0) && (((AbstractButton) source).getText()) != "" && (pickedPiece == bPawnA || pickedPiece == bRookA || pickedPiece == bKnightA || pickedPiece == bBishopA || pickedPiece == bQueenA || pickedPiece == bKingA || pickedPiece == empty)) {
+				
+				counter = 1;
+				((JComponent) source).setBackground(Color.GREEN); //To mark picked piece
+			
+				//Copying piece
+				pieceCopy = ((AbstractButton) source).getText();
+			
+				((AbstractButton) source).setText(empty); // picking from the previous square
+			
+				//Moves sender to the engine / output to engine
+				Main.pieceToMove = pieceCopy;
+				Main.pieceToMoveMethod();
+			
+			} else if(counter == 1) {
+				counter = 0;
+				Object source2 = e.getSource();
+			
+				//Pasting piece
+				((AbstractButton) source2).setText(pieceCopy); // putting on the new square
+			
+				//Refreshing the board to delete the mark
+				square1.setBackground(Color.getHSBColor(32, 6, 100));
+				square2.setBackground(Color.LIGHT_GRAY);
+				square3.setBackground(Color.getHSBColor(32, 6, 100));
+				square4.setBackground(Color.LIGHT_GRAY);
+				square5.setBackground(Color.getHSBColor(32, 6, 100));
+				square6.setBackground(Color.LIGHT_GRAY);
+				square7.setBackground(Color.getHSBColor(32, 6, 100));
+				square8.setBackground(Color.LIGHT_GRAY);
+			
+				square9.setBackground(Color.LIGHT_GRAY);
+				square10.setBackground(Color.getHSBColor(32, 6, 100));
+				square11.setBackground(Color.LIGHT_GRAY);
+				square12.setBackground(Color.getHSBColor(32, 6, 100));
+				square13.setBackground(Color.LIGHT_GRAY);
+				square14.setBackground(Color.getHSBColor(32, 6, 100));
+				square15.setBackground(Color.LIGHT_GRAY);
+				square16.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				square17.setBackground(Color.getHSBColor(32, 6, 100));
+				square18.setBackground(Color.LIGHT_GRAY);
+				square19.setBackground(Color.getHSBColor(32, 6, 100));
+				square20.setBackground(Color.LIGHT_GRAY);
+				square21.setBackground(Color.getHSBColor(32, 6, 100));
+				square22.setBackground(Color.LIGHT_GRAY);
+				square23.setBackground(Color.getHSBColor(32, 6, 100));
+				square24.setBackground(Color.LIGHT_GRAY);
+			
+				square25.setBackground(Color.LIGHT_GRAY);
+				square26.setBackground(Color.getHSBColor(32, 6, 100));
+				square27.setBackground(Color.LIGHT_GRAY);
+				square28.setBackground(Color.getHSBColor(32, 6, 100));
+				square29.setBackground(Color.LIGHT_GRAY);
+				square30.setBackground(Color.getHSBColor(32, 6, 100));
+				square31.setBackground(Color.LIGHT_GRAY);
+				square32.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				square33.setBackground(Color.getHSBColor(32, 6, 100));
+				square34.setBackground(Color.LIGHT_GRAY);
+				square35.setBackground(Color.getHSBColor(32, 6, 100));
+				square36.setBackground(Color.LIGHT_GRAY);
+				square37.setBackground(Color.getHSBColor(32, 6, 100));
+				square38.setBackground(Color.LIGHT_GRAY);
+				square39.setBackground(Color.getHSBColor(32, 6, 100));
+				square40.setBackground(Color.LIGHT_GRAY);
+			
+				square41.setBackground(Color.LIGHT_GRAY);
+				square42.setBackground(Color.getHSBColor(32, 6, 100));
+				square43.setBackground(Color.LIGHT_GRAY);
+				square44.setBackground(Color.getHSBColor(32, 6, 100));
+				square45.setBackground(Color.LIGHT_GRAY);
+				square46.setBackground(Color.getHSBColor(32, 6, 100));
+				square47.setBackground(Color.LIGHT_GRAY);
+				square48.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				square49.setBackground(Color.getHSBColor(32, 6, 100));
+				square50.setBackground(Color.LIGHT_GRAY);
+				square51.setBackground(Color.getHSBColor(32, 6, 100));
+				square52.setBackground(Color.LIGHT_GRAY);
+				square53.setBackground(Color.getHSBColor(32, 6, 100));
+				square54.setBackground(Color.LIGHT_GRAY);
+				square55.setBackground(Color.getHSBColor(32, 6, 100));
+				square56.setBackground(Color.LIGHT_GRAY);
+			
+				square57.setBackground(Color.LIGHT_GRAY);
+				square58.setBackground(Color.getHSBColor(32, 6, 100));
+				square59.setBackground(Color.LIGHT_GRAY);
+				square60.setBackground(Color.getHSBColor(32, 6, 100));
+				square61.setBackground(Color.LIGHT_GRAY);
+				square62.setBackground(Color.getHSBColor(32, 6, 100));
+				square63.setBackground(Color.LIGHT_GRAY);
+				square64.setBackground(Color.getHSBColor(32, 6, 100));
+			
+				//Changes turns at the end of each move
+				if(Main.turnTeller == 0) {
+					Main.turnTeller = 1;
+				} else {
+					Main.turnTeller = 0;
+				}			
+			}
+			
+		}
 	}
 }
