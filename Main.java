@@ -1,3 +1,6 @@
+//Chess version 1.0
+//Made by Patryk Siekiera
+
 public class Main {
 	
 	//Chess board
