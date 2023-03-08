@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -241,6 +243,71 @@ public class GUI extends JFrame implements ActionListener{
 		square62.setBackground(Color.getHSBColor(32, 6, 100));
 		square63.setBackground(Color.LIGHT_GRAY);
 		square64.setBackground(Color.getHSBColor(32, 6, 100));
+		
+		square1.setBorder(defaultBorder);
+		square2.setBorder(defaultBorder);
+		square3.setBorder(defaultBorder);
+		square4.setBorder(defaultBorder);
+		square5.setBorder(defaultBorder);
+		square6.setBorder(defaultBorder);
+		square7.setBorder(defaultBorder);
+		square8.setBorder(defaultBorder);
+		square9.setBorder(defaultBorder);
+		square10.setBorder(defaultBorder);
+		square11.setBorder(defaultBorder);
+		square12.setBorder(defaultBorder);
+		square13.setBorder(defaultBorder);
+		square14.setBorder(defaultBorder);
+		square15.setBorder(defaultBorder);
+		square16.setBorder(defaultBorder);
+		square17.setBorder(defaultBorder);
+		square18.setBorder(defaultBorder);
+		square19.setBorder(defaultBorder);
+		square20.setBorder(defaultBorder);
+		square21.setBorder(defaultBorder);
+		square22.setBorder(defaultBorder);
+		square23.setBorder(defaultBorder);
+		square24.setBorder(defaultBorder);
+		square25.setBorder(defaultBorder);
+		square26.setBorder(defaultBorder);
+		square27.setBorder(defaultBorder);
+		square28.setBorder(defaultBorder);
+		square29.setBorder(defaultBorder);
+		square30.setBorder(defaultBorder);
+		square31.setBorder(defaultBorder);
+		square32.setBorder(defaultBorder);
+		square33.setBorder(defaultBorder);
+		square34.setBorder(defaultBorder);
+		square35.setBorder(defaultBorder);
+		square36.setBorder(defaultBorder);
+		square37.setBorder(defaultBorder);
+		square38.setBorder(defaultBorder);
+		square39.setBorder(defaultBorder);
+		square40.setBorder(defaultBorder);
+		square41.setBorder(defaultBorder);
+		square42.setBorder(defaultBorder);
+		square43.setBorder(defaultBorder);
+		square44.setBorder(defaultBorder);
+		square45.setBorder(defaultBorder);
+		square46.setBorder(defaultBorder);
+		square47.setBorder(defaultBorder);
+		square48.setBorder(defaultBorder);
+		square49.setBorder(defaultBorder);
+		square50.setBorder(defaultBorder);
+		square51.setBorder(defaultBorder);
+		square52.setBorder(defaultBorder);
+		square53.setBorder(defaultBorder);
+		square54.setBorder(defaultBorder);
+		square55.setBorder(defaultBorder);
+		square56.setBorder(defaultBorder);
+		square57.setBorder(defaultBorder);
+		square58.setBorder(defaultBorder);
+		square59.setBorder(defaultBorder);
+		square60.setBorder(defaultBorder);
+		square61.setBorder(defaultBorder);
+		square62.setBorder(defaultBorder);
+		square63.setBorder(defaultBorder);
+		square64.setBorder(defaultBorder);		
 	}
 	
 	public void GUIframe(int w, int h) {
@@ -324,6 +391,72 @@ public class GUI extends JFrame implements ActionListener{
 		square62.setFont(buttonFont);
 		square63.setFont(buttonFont);
 		square64.setFont(buttonFont);
+		
+		//Names needed for the engine
+		square1.setName("1");
+		square2.setName("2");
+		square3.setName("3");
+		square4.setName("4");
+		square5.setName("5");
+		square6.setName("6");
+		square7.setName("7");
+		square8.setName("8");
+		square9.setName("9");
+		square10.setName("10");
+		square11.setName("11");
+		square12.setName("12");
+		square13.setName("13");
+		square14.setName("14");
+		square15.setName("15");
+		square16.setName("16");
+		square17.setName("17");
+		square18.setName("18");
+		square19.setName("19");
+		square20.setName("20");
+		square21.setName("21");
+		square22.setName("22");
+		square23.setName("23");
+		square24.setName("24");
+		square25.setName("25");
+		square26.setName("26");
+		square27.setName("27");
+		square28.setName("28");
+		square29.setName("29");
+		square30.setName("30");
+		square31.setName("31");
+		square32.setName("32");
+		square33.setName("33");
+		square34.setName("34");
+		square35.setName("35");
+		square36.setName("36");
+		square37.setName("37");
+		square38.setName("38");
+		square39.setName("39");
+		square40.setName("40");
+		square41.setName("41");
+		square42.setName("42");
+		square43.setName("43");
+		square44.setName("44");
+		square45.setName("45");
+		square46.setName("46");
+		square47.setName("47");
+		square48.setName("48");
+		square49.setName("49");
+		square50.setName("50");
+		square51.setName("51");
+		square52.setName("52");
+		square53.setName("53");
+		square54.setName("54");
+		square55.setName("55");
+		square56.setName("56");
+		square57.setName("57");
+		square58.setName("58");
+		square59.setName("59");
+		square60.setName("60");
+		square61.setName("61");
+		square62.setName("62");
+		square63.setName("63");
+		square64.setName("64");
 		
 		//Board coloring
 		boardColors();
@@ -467,13 +600,21 @@ public class GUI extends JFrame implements ActionListener{
 	//Counter for making moves
 	public static int counter = 0;
 	public static String pieceCopy;
+	public static String squareChecker = "";
+	public static Object buttonNumber = "";
+	
+	//Border for possible moves, default border
+	LineBorder borderMove = new LineBorder(Color.GREEN, 3);
+	LineBorder defaultBorder = new LineBorder(Color.DARK_GRAY);
 	
 	//Making pieces movable and output to the engine
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		Object source = e.getSource();
+		buttonNumber = ((JComponent) source).getName();
 		String pickedPiece = ((AbstractButton) source).getText();
+		System.out.println(buttonNumber);
 		
 		//White's turn
 		if(Main.turnTeller == 0) {
@@ -481,26 +622,231 @@ public class GUI extends JFrame implements ActionListener{
 			if((counter == 0) && (((AbstractButton) source).getText() != "") && (pickedPiece == wPawnA || pickedPiece == wRookA || pickedPiece == wKnightA || pickedPiece == wBishopA || pickedPiece == wQueenA || pickedPiece == wKingA || pickedPiece == empty)) {
 			
 				counter = 1;
-				((JComponent) source).setBackground(Color.GREEN); //To mark picked piece
+				//To mark picked piece
+				((JComponent) source).setBackground(Color.GREEN);
 			
 				//Copying piece
 				pieceCopy = ((AbstractButton) source).getText();
-			
-				((AbstractButton) source).setText(empty); // picking from the previous square
+				// picking from the previous square
+				((AbstractButton) source).setText(empty);
 			
 				//Moves sender to the engine / output to engine
 				Main.pieceToMove = pieceCopy;
-				Main.pieceToMoveMethod(); // for tests only
-			
+				
+				//Pieces in game
+				Pawn.pawn();
+				Rook.rook();
+				Knight.knight();
+				Bishop.bishop();
+				Queen.queen();
+				King.king();
+				
+				//Bishop marking
+				if(Main.possibleMove.contains(1)) {
+				    square1.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(2)) {
+				    square2.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(3)) {
+				    square3.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(4)) {
+				    square4.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(5)) {
+				    square5.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(6)) {
+				    square6.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(7)) {
+				    square7.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(8)) {
+				    square8.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(9)) {
+				    square9.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(10)) {
+					square10.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(11)) {
+					square11.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(12)) {
+					square12.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(13)) {
+					square13.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(14)) {
+					square14.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(15)) {
+					square15.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(16)) {
+					square16.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(17)) {
+					square17.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(18)) {
+					square18.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(19)) {
+					square19.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(20)) {
+					square20.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(21)) {
+					square21.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(22)) {
+					square22.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(23)) {
+					square23.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(24)) {
+					square24.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(25)) {
+					square25.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(26)) {
+					square26.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(27)) {
+					square27.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(28)) {
+					square28.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(29)) {
+					square29.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(30)) {
+					square30.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(31)) {
+					square31.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(32)) {
+					square32.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(33)) {
+					square33.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(34)) {
+					square34.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(35)) {
+					square35.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(36)) {
+					square36.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(37)) {
+					square37.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(38)) {
+					square38.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(39)) {
+					square39.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(40)) {
+					square40.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(41)) {
+					square41.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(42)) {
+					square42.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(43)) {
+					square43.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(44)) {
+					square44.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(45)) {
+					square45.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(46)) {
+					square46.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(47)) {
+					square47.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(48)) {
+					square48.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(49)) {
+					square49.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(50)) {
+					square50.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(51)) {
+					square51.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(52)) {
+					square52.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(53)) {
+					square53.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(54)) {
+					square54.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(55)) {
+					square55.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(56)) {
+					square56.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(57)) {
+					square57.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(58)) {
+					square58.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(59)) {
+					square59.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(60)) {
+					square60.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(61)) {
+					square61.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(62)) {
+					square62.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(63)) {
+					square63.setBorder(borderMove);
+				}
+				if(Main.possibleMove.contains(64)) {
+					square64.setBorder(borderMove);
+				}
+				
+				Main.engine();
+				
 			} else if((counter == 1) && (pickedPiece != wPawnA) && (pickedPiece != wRookA) && (pickedPiece != wKnightA) && (pickedPiece != wBishopA) && (pickedPiece != wQueenA) && (pickedPiece != wKingA)) {
 				
 				counter = 0;
 				Object source2 = e.getSource();
-			
-				//Pasting piece
+				squareChecker.equals(source2);
+				
+				//Pasting piece - GUI
 				((AbstractButton) source2).setText(pieceCopy); // putting on the new square
-			
-				//Refreshing the board to delete the mark
+				
+				//Refreshing the board to delete the mark - GUI
 				boardColors();
 			
 				//Changes turns at the end of each move
@@ -516,6 +862,7 @@ public class GUI extends JFrame implements ActionListener{
 				
 				counter = 1;
 				((JComponent) source).setBackground(Color.GREEN); //To mark picked piece
+				
 			
 				//Copying piece
 				pieceCopy = ((AbstractButton) source).getText();
@@ -524,18 +871,20 @@ public class GUI extends JFrame implements ActionListener{
 			
 				//Moves sender to the engine / output to engine
 				Main.pieceToMove = pieceCopy;
-				Main.pieceToMoveMethod();
+				Main.engine();
 			
 			} else if((counter == 1) && (pickedPiece != bPawnA) && (pickedPiece != bRookA) && (pickedPiece != bKnightA) && (pickedPiece != bBishopA) && (pickedPiece != bQueenA) && (pickedPiece != bKingA)) {
+				
 				counter = 0;
 				Object source2 = e.getSource();
+				squareChecker.equals(source2);
 			
 				//Pasting piece
 				((AbstractButton) source2).setText(pieceCopy); // putting on the new square
 			
 				//Refreshing the board colors to delete the mark
 				boardColors();
-			
+				
 				//Changes turns at the end of each move
 				if(Main.turnTeller == 0) {
 					Main.turnTeller = 1;
@@ -543,7 +892,6 @@ public class GUI extends JFrame implements ActionListener{
 					Main.turnTeller = 0;
 				}			
 			}
-			
 		}
 	}
 }
